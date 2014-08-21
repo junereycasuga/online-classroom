@@ -12,6 +12,7 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav pull-right">
 				<li><a href="#">Hello, Teacher <?php echo Yii::app()->user->userFirstname . ' ' . Yii::app()->user->userLastname; ?></a></li>
+				<li><a href="<?php echo Yii::app()->createUrl('teacher/dashboard'); ?>">Dashboard</a></li>
 				<li><a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">Logout</a></li>
 			</ul>
 		</div>
