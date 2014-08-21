@@ -24,6 +24,7 @@
 
 	<!-- bootstrap specific script -->
 	<?php
+	Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/library/js/jquery-2.1.1.min.js');
 	Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/library/js/bootstrap.min.js');
 	?>
 </body>

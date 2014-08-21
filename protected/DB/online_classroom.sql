@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 20, 2014 at 11:33 PM
--- Server version: 5.5.38-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.3
+-- Generation Time: Aug 21, 2014 at 05:28 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -39,6 +39,28 @@ CREATE TABLE IF NOT EXISTS `assignments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `classroom`
+--
+
+CREATE TABLE IF NOT EXISTS `classroom` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `classroom_name` varchar(255) NOT NULL,
+  `classroom_subject` int(11) NOT NULL,
+  `classroom_teacher` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `classroom_name` (`classroom_name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `classroom`
+--
+
+INSERT INTO `classroom` (`id`, `classroom_name`, `classroom_subject`, `classroom_teacher`) VALUES
+(1, 'COM1 - Mang Jose', 1, 123);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `students`
 --
 
@@ -49,6 +71,14 @@ CREATE TABLE IF NOT EXISTS `students` (
   `student_year_level` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `student_firstname`, `student_lastname`, `student_year_level`) VALUES
+(2014001, 'Totoy', 'Brown', 1),
+(2014002, 'Neneng', 'Brown', 2);
 
 -- --------------------------------------------------------
 
@@ -61,7 +91,15 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `subject_shortcode` varchar(255) NOT NULL,
   `subject_longname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `subject_shortcode`, `subject_longname`) VALUES
+(1, 'COM1', 'Computer 1'),
+(2, 'MATH1', 'Algebra');
 
 -- --------------------------------------------------------
 
@@ -75,6 +113,13 @@ CREATE TABLE IF NOT EXISTS `teachers` (
   `teacher_lastname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teachers`
+--
+
+INSERT INTO `teachers` (`id`, `teacher_firstname`, `teacher_lastname`) VALUES
+(123, 'Mang', 'Jose');
 
 -- --------------------------------------------------------
 
@@ -90,7 +135,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_type`, `id`) VALUES
+(1, 'mangjose', '0655a949c0826968e2daa324026f7b2dcccd94ac882ba5a4d5cec0fbc1fc0ff545a1a3b77560b7ead1704ca9f41b73a91c7d238f946f723e66fa96a17f1c3558', 1, 123);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,21 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "teachers".
+ * This is the model class for table "subjects".
  *
- * The followings are the available columns in table 'teachers':
+ * The followings are the available columns in table 'subjects':
  * @property integer $id
- * @property string $teacher_firstname
- * @property string $teacher_lastname
+ * @property string $subject_shortcode
+ * @property string $subject_longname
  */
-class Teachers extends CActiveRecord
+class Subjects extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'teachers';
+		return 'subjects';
 	}
 
 	/**
@@ -26,12 +26,11 @@ class Teachers extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, teacher_firstname, teacher_lastname', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('teacher_firstname, teacher_lastname', 'length', 'max'=>255),
+			array('subject_shortcode, subject_longname', 'required'),
+			array('subject_shortcode, subject_longname', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, teacher_firstname, teacher_lastname', 'safe', 'on'=>'search'),
+			array('id, subject_shortcode, subject_longname', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,8 +52,8 @@ class Teachers extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'teacher_firstname' => 'Teacher Firstname',
-			'teacher_lastname' => 'Teacher Lastname',
+			'subject_shortcode' => 'Subject Shortcode',
+			'subject_longname' => 'Subject Longname',
 		);
 	}
 
@@ -77,8 +76,8 @@ class Teachers extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('teacher_firstname',$this->teacher_firstname,true);
-		$criteria->compare('teacher_lastname',$this->teacher_lastname,true);
+		$criteria->compare('subject_shortcode',$this->subject_shortcode,true);
+		$criteria->compare('subject_longname',$this->subject_longname,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -89,16 +88,29 @@ class Teachers extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Teachers the static model class
+	 * @return Subjects the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
 
-	public static function getTeacherName($id) {
+	public static function getSubjects()
+	{
+		return CHtml::listData(self::model()->findAll(), 'id', 'subject_longname');
+	}
+
+	public static function getSubjectShortCode($id)
+	{
 		$model = self::model()->findByPk($id);
 
-		return $model->teacher_firstname . ' ' .$model->teacher_lastname;
+		return $model->subject_shortcode;
+	}
+
+	public static function getSubjectLongName($id)
+	{
+		$model = self::model()->findByPk($id);
+
+		return $model->subject_longname;
 	}
 }
