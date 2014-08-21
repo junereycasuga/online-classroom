@@ -17,14 +17,14 @@
 			<thead>
 				<tr>
 					<th>Assignment Title</th>
-					<th>Assignment Details</th>
+					<th>Assignment Deadline</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach($assignments as $assignment) { ?>
 				<tr>
 					<td><a href="<?php echo Yii::app()->createUrl('assignment/view', array('id'=>$assignment->id)); ?>"><?php echo $assignment->assignment_title; ?></td>
-					<td><?php echo $assignment->assignment_body; ?></td>
+					<td><?php echo $assignment->assignment_deadline; ?></td>
 				</tr>
 				<?php } ?>
 			</tbody>
