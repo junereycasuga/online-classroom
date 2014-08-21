@@ -13,9 +13,13 @@
 	<!-- header -->
 	<?php
 	if(Yii::app()->user->isGuest) {
-		$this->renderPartial('//layouts/commHeader');
+		$this->renderPartial('//layouts/header');
 	} else {
-		$this->renderPartial('//layouts/commHeader');
+		if(Yii::app()->user->userType == 1) {
+			$this->renderPartial('//layouts/teacherHeader');
+		} else if(Yii::app()->user->userType == 2) {
+			$this->renderPartial('//layouts/studentHeader');
+		}
 	}
 	?>
 	<div class="container theme-showcase" role="main">
