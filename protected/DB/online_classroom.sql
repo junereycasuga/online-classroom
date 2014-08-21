@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 21, 2014 at 06:31 AM
+-- Generation Time: Aug 21, 2014 at 07:50 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.4.24
 
@@ -100,6 +100,27 @@ CREATE TABLE IF NOT EXISTS `students` (
 INSERT INTO `students` (`id`, `student_firstname`, `student_lastname`, `student_year_level`) VALUES
 (2014001, 'Totoy', 'Brown', 1),
 (2014002, 'Neneng', 'Brown', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_classroom`
+--
+
+CREATE TABLE IF NOT EXISTS `student_classroom` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `classroom_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `student_classroom`
+--
+
+INSERT INTO `student_classroom` (`id`, `student_id`, `classroom_id`) VALUES
+(1, 2014001, 1),
+(2, 2014001, 1);
 
 -- --------------------------------------------------------
 
