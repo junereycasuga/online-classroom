@@ -12,6 +12,24 @@
 	<div class="tab-pane active" id="assignments">
 		<br>
 		<button class="btn btn-primary" data-toggle="modal" data-target="#newAssignmentModal">New Assignment</button>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Assignment Title</th>
+					<th>Assignment Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($assignments as $assignment) { ?>
+				<tr>
+					<td><a href="<?php echo Yii::app()->createUrl('assignment/view', array('id'=>$assignment->id)); ?>"><?php echo $assignment->assignment_title; ?></td>
+					<td><?php echo $assignment->assignment_body; ?></td>
+				</tr>
+				<?php } ?>
+			</tbody>
+
+		</table>
 	</div>
 
 	<div class="tab-pane" id="quizzes">
@@ -48,8 +66,9 @@
 						'class'=>'form'
 					)
 				)); ?>
-					
-					<input type="submit" value="Save" name="btnSave">
+					<?php echo $form->textField($modelAssignments, 'assignment_title', array('placeholder'=>'Assignment Title')); ?><br>
+					<?php echo $form->textArea($modelAssignments, 'assignment_body', array('placeholder'=>'Assignment Details')); ?><br>
+					<input type="submit" value="Save" name="btnSaveAssignment">
 				<?php $this->endWidget(); ?>
 			</div>
 		</div>

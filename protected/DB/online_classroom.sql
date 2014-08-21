@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 21, 2014 at 05:28 AM
+-- Generation Time: Aug 21, 2014 at 05:58 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.4.24
 
@@ -28,13 +28,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `assignments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `teacher_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
+  `classroom_id` int(11) NOT NULL,
   `assignment_title` varchar(255) NOT NULL,
   `assignment_body` longtext NOT NULL,
   `assignment_deadline` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `assignments`
+--
+
+INSERT INTO `assignments` (`id`, `classroom_id`, `assignment_title`, `assignment_body`, `assignment_deadline`) VALUES
+(1, 1, 'Assignment #1', 'Develop a web application that aggregates data about a certain area', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
