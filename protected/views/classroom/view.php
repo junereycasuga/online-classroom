@@ -69,7 +69,7 @@
 					<?php echo $form->textField($modelAssignments, 'assignment_title', array('placeholder'=>'Assignment Title')); ?><br>
 					<?php echo $form->textArea($modelAssignments, 'assignment_body', array('placeholder'=>'Assignment Details')); ?><br>
 					<div class='input-group date' id='deadlinepicker'>
-						<?php echo $form->textField($modelAssignments, 'assignment_deadline', array('class'=>'form-control')); ?>
+						<?php echo $form->textField($modelAssignments, 'assignment_deadline', array('class'=>'form-control', 'data-date-format'=>'MM/DD/YYYY hh:mm:ss')); ?>
                     	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     	</span>
                		</div>
