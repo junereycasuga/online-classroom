@@ -68,6 +68,11 @@
 				)); ?>
 					<?php echo $form->textField($modelAssignments, 'assignment_title', array('placeholder'=>'Assignment Title')); ?><br>
 					<?php echo $form->textArea($modelAssignments, 'assignment_body', array('placeholder'=>'Assignment Details')); ?><br>
+					<div class='input-group date' id='deadlinepicker'>
+						<?php echo $form->textField($modelAssignments, 'assignment_deadline', array('class'=>'form-control')); ?>
+                    	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    	</span>
+               		</div>
 					<input type="submit" value="Save" name="btnSaveAssignment">
 				<?php $this->endWidget(); ?>
 			</div>
@@ -134,3 +139,9 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(function() {
+    	$('#deadlinepicker').datetimepicker();
+  	});
+</script>

@@ -7,6 +7,7 @@
 	<!-- bootstrap specific styles -->
 	<?php
 	Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/library/css/bootstrap.min.css');
+	Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/library/css/bootstrap-datetimepicker.min.css');
 	?>
 </head>
 <body role="document">
@@ -30,6 +31,8 @@
 	<?php
 	Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/library/js/jquery-2.1.1.min.js');
 	Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/library/js/bootstrap.min.js');
+	Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/library/js/moment.js');
+	Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/library/js/bootstrap-datetimepicker.min.js');
 	?>
 </body>
 </html>
