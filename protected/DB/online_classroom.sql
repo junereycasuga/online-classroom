@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 21, 2014 at 06:07 AM
+-- Generation Time: Aug 21, 2014 at 06:31 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.4.24
 
@@ -41,6 +41,21 @@ CREATE TABLE IF NOT EXISTS `assignments` (
 
 INSERT INTO `assignments` (`id`, `classroom_id`, `assignment_title`, `assignment_body`, `assignment_deadline`) VALUES
 (1, 1, 'Assignment #1', 'Develop a web application that aggregates data about a certain area', '2014-11-30 06:23:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignment_replies`
+--
+
+CREATE TABLE IF NOT EXISTS `assignment_replies` (
+  `id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `assignment_reply` longtext NOT NULL,
+  `assignment_reply_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
