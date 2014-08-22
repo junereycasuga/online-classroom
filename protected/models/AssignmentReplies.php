@@ -101,4 +101,16 @@ class AssignmentReplies extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function getAllRepliesFromAssignment($id) {
+		$model = self::model()->findAllByAttributes(array('assignment_id'=>$id));
+
+		return $model;
+	}
+
+	public static function getStudentReplyFromAssignment($id, $studentId) {
+		$model = self::model()->findAllByAttributes(array('assignment_id'=>$id, 'student_id'=>$studentId));
+
+		return $model;
+	}
 }

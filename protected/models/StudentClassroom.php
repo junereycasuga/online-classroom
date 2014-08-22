@@ -100,4 +100,10 @@ class StudentClassroom extends CActiveRecord
 
 		return $model;
 	}
+
+	public static function getClassroomsOfStudent($id) {
+		$model = self::model()->findAllByAttributes(array('student_id'=>$id));
+
+		return $model;
+	}
 }
