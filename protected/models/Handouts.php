@@ -1,22 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "students".
+ * This is the model class for table "handouts".
  *
- * The followings are the available columns in table 'students':
+ * The followings are the available columns in table 'handouts':
  * @property integer $id
- * @property string $student_firstname
- * @property string $student_lastname
- * @property integer $student_year_level
+ * @property integer $classroom_id
+ * @property string $file
  */
-class Students extends CActiveRecord
+class Handouts extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'students';
+		return 'handouts';
 	}
 
 	/**
@@ -27,12 +26,12 @@ class Students extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, student_firstname, student_lastname, student_year_level', 'required'),
-			array('id, student_year_level', 'numerical', 'integerOnly'=>true),
-			array('student_firstname, student_lastname', 'length', 'max'=>255),
+			array('classroom_id, file', 'required'),
+			array('classroom_id', 'numerical', 'integerOnly'=>true),
+			array('file', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, student_firstname, student_lastname, student_year_level', 'safe', 'on'=>'search'),
+			array('id, classroom_id, file', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,9 +53,8 @@ class Students extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'student_firstname' => 'Student Firstname',
-			'student_lastname' => 'Student Lastname',
-			'student_year_level' => 'Student Year Level',
+			'classroom_id' => 'Classroom',
+			'file' => 'File',
 		);
 	}
 
@@ -79,9 +77,8 @@ class Students extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('student_firstname',$this->student_firstname,true);
-		$criteria->compare('student_lastname',$this->student_lastname,true);
-		$criteria->compare('student_year_level',$this->student_year_level);
+		$criteria->compare('classroom_id',$this->classroom_id);
+		$criteria->compare('file',$this->file,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,21 +89,16 @@ class Students extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Students the static model class
+	 * @return Handouts the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
 
-	public static function getStudents()
-	{
-		return CHtml::listData(self::model()->findAll(), 'id', 'student_firstname');
-	}
+	public static function getHandoutsOfClassroom($id)  {
+		$model = self::model()->findAllByAttributes(array('classroom_id'=>$id));
 
-	public static function getStudentName($id) {
-		$model = Students::model()->findByPk($id);
-
-		return $model->student_firstname . ' ' . $model->student_lastname;
+		return $model;
 	}
 }

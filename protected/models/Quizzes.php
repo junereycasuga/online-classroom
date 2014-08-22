@@ -1,22 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "students".
+ * This is the model class for table "quizzes".
  *
- * The followings are the available columns in table 'students':
+ * The followings are the available columns in table 'quizzes':
  * @property integer $id
- * @property string $student_firstname
- * @property string $student_lastname
- * @property integer $student_year_level
+ * @property string $quiz_title
+ * @property string $quiz_body
+ * @property string $quiz_deadline
+ * @property integer $classroom_id
  */
-class Students extends CActiveRecord
+class Quizzes extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'students';
+		return 'quizzes';
 	}
 
 	/**
@@ -27,12 +28,12 @@ class Students extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, student_firstname, student_lastname, student_year_level', 'required'),
-			array('id, student_year_level', 'numerical', 'integerOnly'=>true),
-			array('student_firstname, student_lastname', 'length', 'max'=>255),
+			array('quiz_title, quiz_body, quiz_deadline, classroom_id', 'required'),
+			array('classroom_id', 'numerical', 'integerOnly'=>true),
+			array('quiz_title', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, student_firstname, student_lastname, student_year_level', 'safe', 'on'=>'search'),
+			array('id, quiz_title, quiz_body, quiz_deadline, classroom_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,9 +55,10 @@ class Students extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'student_firstname' => 'Student Firstname',
-			'student_lastname' => 'Student Lastname',
-			'student_year_level' => 'Student Year Level',
+			'quiz_title' => 'Quiz Title',
+			'quiz_body' => 'Quiz Body',
+			'quiz_deadline' => 'Quiz Deadline',
+			'classroom_id' => 'Classroom',
 		);
 	}
 
@@ -79,9 +81,10 @@ class Students extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('student_firstname',$this->student_firstname,true);
-		$criteria->compare('student_lastname',$this->student_lastname,true);
-		$criteria->compare('student_year_level',$this->student_year_level);
+		$criteria->compare('quiz_title',$this->quiz_title,true);
+		$criteria->compare('quiz_body',$this->quiz_body,true);
+		$criteria->compare('quiz_deadline',$this->quiz_deadline,true);
+		$criteria->compare('classroom_id',$this->classroom_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,21 +95,16 @@ class Students extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Students the static model class
+	 * @return Quizzes the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
 
-	public static function getStudents()
-	{
-		return CHtml::listData(self::model()->findAll(), 'id', 'student_firstname');
-	}
+	public static function getQuizzesOfClassroom($id) {
+		$model = self::model()->findAllByAttributes(array('classroom_id'=>$id));
 
-	public static function getStudentName($id) {
-		$model = Students::model()->findByPk($id);
-
-		return $model->student_firstname . ' ' . $model->student_lastname;
+		return $model;
 	}
 }

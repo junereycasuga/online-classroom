@@ -45,21 +45,6 @@ INSERT INTO `assignments` (`id`, `classroom_id`, `assignment_title`, `assignment
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assignment_replies`
---
-
-CREATE TABLE IF NOT EXISTS `assignment_replies` (
-  `id` int(11) NOT NULL,
-  `assignment_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `assignment_reply` longtext NOT NULL,
-  `assignment_reply_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `classroom`
 --
 
