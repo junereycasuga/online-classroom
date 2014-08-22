@@ -55,12 +55,14 @@
 			<thead>
 				<tr>
 					<th>File Name</th>
+					<th>&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach($handouts as $handout) { ?>
 				<tr>
 					<td><?php echo $handout->file; ?></td>
+					<td><a href="<?php echo Yii::app()->createUrl('classroom/download',array('classroom'=>$handout->classroom_id,'file'=>$handout->file)); ?>">Download</a></td>
 				</tr>
 				<?php } ?>
 			</tbody>

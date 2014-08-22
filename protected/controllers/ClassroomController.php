@@ -52,10 +52,10 @@ class ClassroomController extends Controller
             if(isset($_POST['Handouts']) && isset($_POST['btnUpload'])) {
                 $modelHandouts->attributes = $_POST['Handouts'];
                 $modelHandouts->classroom_id = $id;
-                // $uploadedFile = CUploadedFile::getInstance($modelHandouts, 'file');
+                $modelHandouts->file = CUploadedFile::getInstance($modelHandouts, 'file');
 
                 if($modelHandouts->save(false)) {
-                    // $uploadedFile->saveAs($upload->saveAs(Yii::app()->params['handoutPath'].$id.'/'.$modelHandouts->file));
+                    $modelHandouts->file->saveAs(Yii::app()->params['handoutPath'].$id.'/'.$modelHandouts->file);
                     $this->refresh();
                 }
             }
@@ -93,6 +93,16 @@ class ClassroomController extends Controller
                 'handouts'=>$handoutList,
                 'students'=>$studentList,
             ));
+        }
+    }
+
+    public function actionDownload() {
+        $classRoomId = $_GET['classroom'];
+        $fileName = $_GET['file'];
+        $filePath = Yii::app()->params['handoutPath'].$classRoomId.'/'.$fileName;
+
+        if(file_exists($filePath)) {
+            Yii::app()->request->sendFile($fileName, file_get_contents($filePath));
         }
     }
 }
