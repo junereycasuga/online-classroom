@@ -72,6 +72,58 @@ class SiteController extends Controller
 		$this->render('contact',array('model'=>$model));
 	}
 
+	public function actionRegister()
+	{
+		$modelUsers = new Users;
+		$registrationType = $_GET['type'];
+
+		if($registrationType == 'teacher') {
+			$modelTeachers = new Teachers;
+
+			if(isset($_POST['Users']) && isset($_POST['btnRegister'])) {
+				$modelTeachers->attributes = $_POST['Teachers'];
+
+				if($modelTeachers->save(false)) {
+					$modelUsers->attributes = $_POST['Users'];
+					$modelUsers->id = $modelTeachers->id;
+					$modelUsers->user_type = 1;
+					$modelUsers->isPasswordChange = 1;
+
+					if($modelUsers->save(false)) {
+						$this->redirect(array('site/login'));
+					}
+				}
+			}
+
+			$this->render('registrationTeacher', array(
+				'modelUsers'=>$modelUsers,
+				'modelTeachers'=>$modelTeachers
+			));
+		} else if($registrationType == 'student') {
+			$modelStudents = new Students;
+
+			if(isset($_POST['Users']) && isset($_POST['btnRegister'])) {
+				$modelStudents->attributes = $_POST['Students'];
+
+				if($modelStudents->save(false)) {
+					$modelUsers->attributes = $_POST['Users'];
+					$modelUsers->id = $modelStudents->id;
+					$modelUsers->user_type = 2;
+					$modelUsers->isPasswordChange = 1;
+
+					if($modelUsers->save(false)) {
+						$this->redirect(array('site/login'));
+					}
+				}
+			}
+
+			$this->render('registrationStudent', array(
+				'modelUsers'=>$modelUsers,
+				'modelStudents'=>$modelStudents
+			));
+		}
+	}
+
 	/**
 	 * Displays the login page
 	 */

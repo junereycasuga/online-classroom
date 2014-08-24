@@ -118,7 +118,6 @@ class Users extends CActiveRecord
 	public function login() {
 		$TPassword = new TPassword();
 		$this->setAttribute('user_password', $TPassword->hash($this->user_password));
-
 		$this->rememberMe = '0';
 		if(isset($_POST['Users']['rememberMe'])){
 			$this->rememberMe = $_POST['Users']['rememberMe'];

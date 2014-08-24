@@ -65,7 +65,7 @@ class ClassroomController extends Controller
                 $modelStudents->attributes = $_POST['StudentClassroom'];
                 $modelStudents->classroom_id = $id;
 
-                if($modelAssignments->save(false)) {
+                if($modelStudents->save(false)) {
                     $this->refresh();
                 }
             }

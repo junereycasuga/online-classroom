@@ -123,7 +123,7 @@
 					<?php echo $form->textField($modelAssignments, 'assignment_title', array('placeholder'=>'Assignment Title')); ?><br>
 					<?php echo $form->textArea($modelAssignments, 'assignment_body', array('placeholder'=>'Assignment Details')); ?><br>
 					<div class='input-group date' id='assignmentdeadlinepicker'>
-						<?php echo $form->textField($modelAssignments, 'assignment_deadline', array('class'=>'form-control', 'data-date-format'=>'MM-DD-YYYY hh:mm:ss')); ?>
+						<?php echo $form->textField($modelAssignments, 'assignment_deadline', array('class'=>'form-control', 'data-date-format'=>'YYYY-MM-DD hh:mm:ss')); ?>
                     	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     	</span>
                		</div>
@@ -159,7 +159,7 @@
 					<?php echo $form->textField($modelQuizzes, 'quiz_title', array('placeholder'=>'Quiz Title')); ?><br>
 					<?php echo $form->textArea($modelQuizzes, 'quiz_body', array('placeholder'=>'Quiz Details')); ?><br>
 					<div class="input-group date" id="quizdeadlinepicker">
-						<?php echo $form->textField($modelQuizzes, 'quiz_deadline', array('class'=>'form-control', 'data-date-format'=>'MM-DD-YYYY hh:mm:ss')); ?>
+						<?php echo $form->textField($modelQuizzes, 'quiz_deadline', array('class'=>'form-control', 'data-date-format'=>'YYYY-MM-DD hh:mm:ss')); ?>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 					</div>
 					<input type="submit" value="Save" name="btnSaveQuiz">

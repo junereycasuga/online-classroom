@@ -43,7 +43,9 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row buttons">
-		<input type="submit" value="Login" class="btn btn-primary" name="btnLogin">
+		<input type="submit" value="Login" class="btn btn-primary" name="btnLogin"><br>
+		<a href="<?php echo Yii::app()->createUrl('site/register', array('type'=>'teacher')); ?>">Teacher Registration</a><br>
+		<a href="<?php echo Yii::app()->createUrl('site/register', array('type'=>'student')); ?>">Student Registration</a>
 	</div>
 
 <?php $this->endWidget(); ?>
