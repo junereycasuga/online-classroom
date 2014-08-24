@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 22, 2014 at 10:44 PM
+-- Generation Time: Aug 24, 2014 at 07:43 PM
 -- Server version: 5.5.38-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.3
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `assignment_body` longtext NOT NULL,
   `assignment_deadline` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `assignments`
@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `assignments` (
 INSERT INTO `assignments` (`id`, `classroom_id`, `assignment_title`, `assignment_body`, `assignment_deadline`) VALUES
 (1, 1, 'Assignment #1', 'Develop a web application that aggregates data about a certain area', '2014-11-30 06:23:22'),
 (2, 0, '', '', '0000-00-00 00:00:00'),
-(3, 0, '', '', '0000-00-00 00:00:00');
+(3, 0, '', '', '0000-00-00 00:00:00'),
+(4, 0, '', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -98,14 +99,15 @@ CREATE TABLE IF NOT EXISTS `handouts` (
   `classroom_id` int(11) NOT NULL,
   `file` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `handouts`
 --
 
 INSERT INTO `handouts` (`id`, `classroom_id`, `file`) VALUES
-(1, 1, 'online_classroom.sql');
+(1, 1, 'online_classroom.sql'),
+(2, 1, '10621682_10203593165784032_1901170586_o.jpg');
 
 -- --------------------------------------------------------
 
@@ -157,12 +159,12 @@ INSERT INTO `quiz_replies` (`id`, `quiz_id`, `student_id`, `quiz_reply`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `students` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_firstname` varchar(255) NOT NULL,
   `student_lastname` varchar(255) NOT NULL,
   `student_year_level` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2014004 ;
 
 --
 -- Dumping data for table `students`
@@ -170,7 +172,8 @@ CREATE TABLE IF NOT EXISTS `students` (
 
 INSERT INTO `students` (`id`, `student_firstname`, `student_lastname`, `student_year_level`) VALUES
 (2014001, 'Totoy', 'Brown', 1),
-(2014002, 'Neneng', 'Brown', 2);
+(2014002, 'Neneng', 'Brown', 2),
+(2014003, 'Hephep', 'Hooray', 3);
 
 -- --------------------------------------------------------
 
@@ -183,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `student_classroom` (
   `student_id` int(11) NOT NULL,
   `classroom_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `student_classroom`
@@ -220,18 +223,19 @@ INSERT INTO `subjects` (`id`, `subject_shortcode`, `subject_longname`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `teachers` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `teacher_firstname` varchar(255) NOT NULL,
   `teacher_lastname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=125 ;
 
 --
 -- Dumping data for table `teachers`
 --
 
 INSERT INTO `teachers` (`id`, `teacher_firstname`, `teacher_lastname`) VALUES
-(123, 'Mang', 'Jose');
+(123, 'Mang', 'Jose'),
+(124, 'Aling', 'Nena');
 
 -- --------------------------------------------------------
 
@@ -247,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
@@ -255,7 +259,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_type`, `id`) VALUES
 (1, 'mangjose', '0655a949c0826968e2daa324026f7b2dcccd94ac882ba5a4d5cec0fbc1fc0ff545a1a3b77560b7ead1704ca9f41b73a91c7d238f946f723e66fa96a17f1c3558', 1, 123),
-(2, 'totoybrown', '0655a949c0826968e2daa324026f7b2dcccd94ac882ba5a4d5cec0fbc1fc0ff545a1a3b77560b7ead1704ca9f41b73a91c7d238f946f723e66fa96a17f1c3558', 2, 2014001);
+(2, 'totoybrown', '0655a949c0826968e2daa324026f7b2dcccd94ac882ba5a4d5cec0fbc1fc0ff545a1a3b77560b7ead1704ca9f41b73a91c7d238f946f723e66fa96a17f1c3558', 2, 2014001),
+(3, 'alingnena', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 1, 124),
+(4, 'hephephooray', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 2, 2014003);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
